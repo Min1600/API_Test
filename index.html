@@ -16,20 +16,16 @@
  const btn = document.querySelector('button')
  const search = document.getElementById('search')
 
- function getGif(){
+ async function getGif(){
   let input = search.value
   let name = `https://api.giphy.com/v1/gifs/translate?api_key=XrSzleUxAMEtPsqShn37or3kZc7Llx0f&s=${input}`
-  fetch(name, {mode: 'cors'})
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(response) {
-        img.src = response.data.images.original.url;
-    })
-    .catch(e => {
-      console.log(e)
-    })}
+  const response = await fetch(name, {mode: 'cors'})
+  const catData = await response.json()
+  img.src = catData.data.images.original.url;
 
+  }
+
+  getGif()
 
   </script>
   
